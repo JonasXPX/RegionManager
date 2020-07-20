@@ -41,7 +41,6 @@ public class PlayerListener implements Listener {
     public void onPlayerTeleport(PlayerTeleportEvent e) {
         Location enterLocation = e.getTo();
         Location fromLocation = e.getFrom();
-        System.out.println(enterLocation.toString() + " ----- " + fromLocation.toString());
         if(enterLocation.getWorld().getName().equals(fromLocation.getWorld().getName())) {
             return;
         }
