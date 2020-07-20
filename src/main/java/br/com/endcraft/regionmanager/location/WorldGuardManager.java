@@ -12,18 +12,27 @@ public class WorldGuardManager {
 
     public static String getRegionByLocation(Location location) {
         GlobalRegionManager globalRegionManager = RegionManager.getWorldGuardPlugin().getGlobalRegionManager();
-        ApplicableRegionSet applicableRegions = globalRegionManager.get(location.getWorld())
-                .getApplicableRegions(location);
-
+        ApplicableRegionSet applicableRegions = globalRegionManager.get(location.getWorld()).getApplicableRegions(location);
+        return getRegionFromApplicableRegions(applicableRegions);
     }
 
 
-    public static String getRegionFromApplicableRegions(ApplicableRegionSet protectedRegions) {
-        Iterator<ProtectedRegion> iterator = protectedRegions.iterator();
-        while (iterator.hasNext()) {
-            ProtectedRegion protectedRegion = iterator.next();
-            String regionId = protectedRegion.getId();
+    private static String getRegionFromApplicableRegions(ApplicableRegionSet protectedRegions) {
+        return getRegionByMostPriority(protectedRegions);
+    }
+
+
+    private static String getRegionByMostPriority(ApplicableRegionSet applicableRegions) {
+        ProtectedRegion region = null;
+        Iterator<ProtectedRegion> regions = applicableRegions.iterator();
+        while(regions.hasNext()) {
+            ProtectedRegion protectedRegion = regions.next();
+            if(region == null) region = protectedRegion;
+            if(protectedRegion.getPriority() > region.getPriority()) {
+                region = protectedRegion;
+            }
         }
-        return null;
+        if(region == null) return null;
+        return region.getId();
     }
 }

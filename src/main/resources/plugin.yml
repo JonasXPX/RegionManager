@@ -1,3 +1,8 @@
 name: RegionManager
 main: br.com.endcraft.regionmanager.RegionManager
-version: 0.0.1
+version: 0.0.2
+commands:
+  rmg:
+    aliases: regionmanager
+    permission: "regionmanager.usage"
+    permission-message: "você não tem permissão para usar este comando"
