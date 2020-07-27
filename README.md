@@ -8,6 +8,7 @@ All commands available in plugin, all command has permission, for all of theses 
 * /rgm list - list created blocked regions on current world
 * /rgm deny <regionName> <itemId> - block entiry player in region with that item in current world
 * /rgm allow <regionName> <itemId> - allow entiry player in region with that item in current world
+* /rmg debug
 
 
 ### build project
