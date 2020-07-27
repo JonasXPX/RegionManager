@@ -9,7 +9,6 @@ import java.util.Set;
 public class RegionManager extends JavaPlugin {
 
     private static WorldGuardPlugin worldGuardPlugin;
-    private static Set<Region> regions;
     private static SQLiteManager database;
 
     @Override

@@ -1,5 +1,7 @@
 package br.com.endcraft.regionmanager;
 
+import br.com.endcraft.regionmanager.listener.PlayerListener;
+import br.com.endcraft.regionmanager.location.WorldGuardManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -59,6 +61,12 @@ public class RegionCommands implements CommandExecutor {
             String regionName = args[1];
             sender.sendMessage(formatToTextVersion(regionName, player.getWorld().getName()));
             verifyForErrors(sender);
+            return true;
+        }
+
+        if (args[0].equalsIgnoreCase("debug")) {
+            player.sendMessage(t("current region: ") + t(WorldGuardManager.getRegionByLocation(player.getLocation())));
+            if(args.length >= 2) player.sendMessage(t("current item: ") + t(String.valueOf(PlayerListener.hasItem(player, Long.valueOf(args[1])))));
             return true;
         }
 
